@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Footer'
 
 const Categories = () => {
   return (
@@ -13,6 +14,8 @@ const Categories = () => {
       <div className="b__category"><button className='cat_btn'>Agriculture</button></div>
       <div className="b__category"><button className='cat_btn'>Environment</button></div>
       <div className="b__category"><button className='cat_btn'>Politics</button></div>
+
+      <Footer />
     </div>
   )
 }

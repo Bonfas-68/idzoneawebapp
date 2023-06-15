@@ -5,13 +5,14 @@ const AddDea = () => {
     <div className='b__add-ideas'>
         <form>
             <div className="b__form-control">
-            <input type="text" placeholder='Do have any method?'/>
+              <textarea name="idea" id="idea" placeholder='Do have any method?'></textarea>
+           
             </div>
             <div className="b__form-buttons">
-                <button>Upload Photo</button>
-                <button>upload Video</button>
-                <button>Upload file</button>
-                <button type='submit'>add</button>
+                <button><span className='form-icon'>📷</span>Upload Photo</button>
+                <button><span className='form-icon'>🎥</span>upload Video</button>
+                <button><span className='form-icon'>📝</span>Upload file</button>
+                <button type='submit' className='form-btn--add'><span className='form-icon'>🏹</span>add</button>
             </div>
         </form>
     </div>

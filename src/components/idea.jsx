@@ -11,7 +11,6 @@ const Idea = ({username ,text ,postimage ,votes ,title ,userimage}) => {
                 </div>
                 <div className="b__user-details">
                     <h3>{username}</h3>
-                    <span>myDomain Name</span>
                 </div>
             </div>
             <div className="b__idea-a">

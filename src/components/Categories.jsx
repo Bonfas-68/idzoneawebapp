@@ -1,23 +1,25 @@
-import React from 'react'
-import Footer from '../Footer'
+import React from "react";
+import Footer from "../Footer";
 
 const Categories = () => {
   return (
-    <div className='b__categories'>
-        <div className="b__category-header">Our Main Domains</div>
-      <div className="b__category"><button className='cat_btn'>Religion</button></div>
-      <div className="b__category"><button className='cat_btn'>Technology</button></div>
-      <div className="b__category"><button className='cat_btn'>Education</button> </div>
-      <div className="b__category"><button className='cat_btn'>Business</button> </div>
-      <div className="b__category"><button className='cat_btn'>Science</button></div>
-      <div className="b__category"><button className='cat_btn'>History</button></div>
-      <div className="b__category"><button className='cat_btn'>Agriculture</button></div>
-      <div className="b__category"><button className='cat_btn'>Environment</button></div>
-      <div className="b__category"><button className='cat_btn'>Politics</button></div>
+    <div className="b__categories">
+      <div className="b__categories-header">Our Main Domains</div>
+      <div className="b__category">
+        <button className="b__category-btn">Religion</button>
+        <button className="b__category-btn">Technology</button>
+        <button className="b__category-btn">Education</button>
+        <button className="b__category-btn">Business</button>
+        <button className="b__category-btn">Science</button>
+        <button className="b__category-btn">History</button>
+        <button className="b__category-btn">Agriculture</button>
+        <button className="b__category-btn">Environment</button>
+        <button className="b__category-btn">Politics</button>
+      </div>
 
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

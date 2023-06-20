@@ -1,47 +1,67 @@
-import React from 'react'
+import React, { useState } from "react";
+import {
+  FaConfluence,
+  FaHome,
+  FaLongArrowAltUp,
+  FaShareAlt,
+  FaUser,
+  FaUsers,
+  FaVoteYea,
+} from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  return (
-    <div className='b__sidebar'>
-      <div className="b__side-button">
-        <button className='active-btn'>
-        <span>🏠</span>
-        <div className="b__side-button--text">Home</div>
-        </button>
-      </div>
-      <div className="b__side-button">
-        <button>
-        <span>👤</span>
-        <div className="b__side-button--text">Profile</div>
-        </button>
-      </div>
-      <div className="b__side-button">
-        <button id='top'>
-        <span>👨‍👧‍👧</span>
-        <div className="b__side-button--text">Followers</div>
-        <span className="top__num">12</span>
-        </button>
-      </div>
-      <div className="b__side-button">
-        <button id='top'>
-        <span>❎</span>
-        <div className="b__side-button--text">Votes</div>
-        <span className="top__num">22</span>
-        </button>
-      </div>
-      <div className="b__side-button">
-        <button id='top'>
-        <span>🏫</span>
-        <div className="b__side-button--text">Collections</div>
-        <span className="top__num">2</span>
-        </button>
-      </div>
-      <div className="b__side-button"><button>
-        <span></span>Logout</button></div>
-      <div className="b__side-button"><button>
-        <span></span>Share a method</button> </div>
-    </div>
-  )
-}
+  const [users, setUsers] = useState();
 
-export default Sidebar
+  return (
+    <div className="b__sidebar">
+      <div className="b__sidebar-button">
+        <button className="active-btn">
+          <FaHome className="btn-symbol" />
+          <span className="b__sidebar-button--text">Home</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button>
+          <FaUser className="btn-symbol" />
+          <span className="b__sidebar-button--text">Profile</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button id="top">
+          <FaUsers className="btn-symbol" />
+          <span className="b__sidebar-button--text">Followers</span>
+          <span id="top__num">12</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button id="top">
+          <FaVoteYea className="btn-symbol" />
+          <span className="b__sidebar-button--text">Votes</span>
+          <span id="top__num">22</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button id="top">
+          <FaConfluence className="btn-symbol" />
+          <span className="b__sidebar-button--text">Collections</span>
+          <span id="top__num">2</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button>
+          <FaLongArrowAltUp className="btn-symbol" />
+          <span className="b__sidebar-button--text">Logout</span>
+        </button>
+      </div>
+      <div className="b__sidebar-button">
+        <button>
+          <FaShareAlt className="btn-symbol" />
+          <span className="b__sidebar-button--text">Share a method</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

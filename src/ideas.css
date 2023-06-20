@@ -13,7 +13,7 @@ body{
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-     height: calc(100vh - 2rem);
+     height: 100vh;
      /* overflow: hidden; */
      /* background-color: #380323; */
 }
@@ -84,8 +84,8 @@ body{
 .b__ideas{
     grid-column: col-start 1 / col-end 7;
     grid-row: 2 / -1;
-    /* background-color: #380323; */
-    height: calc(100vh - 21rem - 1rem);
+    background-color: #380323;
+    height: calc(100vh - 17rem );
     overflow-y: scroll;
     margin-top: 0rem;
 
@@ -117,7 +117,7 @@ body{
     grid-template-columns: 1fr 9fr;
     justify-items: center;
     align-content: center;
-    background-color: #0404209c;
+    background-color: #03394e9c;
     height: 100%;
 }
 .b__user{

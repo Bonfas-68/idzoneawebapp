@@ -4,7 +4,7 @@ import Appideas from "./Appideas"
 import AddDea from "./components/AddDea"
 import Categories from "./components/Categories"
 import Sidebar from "./components/Sidebar"
-import "./ideas.css"
+import "./styles.scss"
 
 function App() {
   return (

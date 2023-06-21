@@ -2,8 +2,8 @@
     CREATE DATABASE idzoneadb;
     USE idzoneadb;
 --Create Tables for the database
-    CREATE TABLE user(
-        user_id int Primary key,
+    CREATE TABLE users(
+        user_id int IDENTITY(1,1) Primary key,
         username VARCHAR(25),
         user_domain VARCHAR(50),
         user_image VARCHAR(50),
@@ -12,10 +12,10 @@
         user_location VARCHAR(255),
         user_password VARCHAR(255),
         user_confirm_password VARCHAR(255),
-        created_at TiMESTAMP DEFAULT NOW()
+        created_at DATETIME
     );
 --Query OK, 0 rows affected (0.89 sec)
-    insert into user (
+    insert into users (
         user_id,
         username,
         user_domain,
@@ -26,7 +26,7 @@
     (2,'Calos Menjor', 'Humanty', 'calorM@gmail.com', '0711213644', 'uganda');
 
 --Read data
-    SELECT * FROM user;
+    SELECT * FROM users;
 
 
 --FOLLOW TABLE
@@ -34,7 +34,7 @@
     CREATE TABLE follow(
         follow_id int Primary key, 
         user_id int, 
-        Foreign key(user_id) REFerences user(user_id)
+        Foreign key(user_id) REFerences users(user_id)
     );
     -- add data
     insert into 
@@ -50,27 +50,27 @@
 
 --iDEA TABLE
     -------------------------
-    CREATE TABLE idea_table (
+    CREATE TABLE ideas (
         idea_id int Primary key,
         user_id int,
         idea_text VARCHAR(255),
         idea_img VARCHAR(255),
         idea_video VARCHAR(255),
         idea_file VARCHAR(255),
-        created_at TiMESTAMP DEFAULT NOW(),
+        created_at DateTiME,
         votes int DEFAULT 0,
         likes int DEFAULT 0,
-        Foreign key(user_id) REFERENCES user(user_id)
+        Foreign key(user_id) REFERENCES users(user_id)
     );
     insert into 
-    idea_table
+    ideas
     (idea_id, user_id, idea_text)
     VALUES
-    (1,2,'Show love to all help as you can and get busy atleast for others at once!!!'),
-    (2,1,'The way to solve for any float challenge is by clear both');
+    (1,16,'Show love to all help as you can and get busy atleast for others at once!!!'),
+    (2,17,'The way to solve for any float challenge is by clear both');
 
     --Read data
-    SELECT * FROM idea_table;
+    SELECT * FROM ideas;
 
     --Query OK, 0 rows affected (0.89 sec)
 --COMMENT TABLE
@@ -80,16 +80,16 @@
         comment VARCHAR(255),
         user_id int,
         idea_id int, 
-        created_at TiMESTAMP DEFAULT NOW(),
-        Foreign key(user_id) REFERENCES user(user_id),
-        Foreign key(idea_id) REFERENCES idea_table(idea_id)
+        created_at DateTiME,
+        Foreign key(user_id) REFERENCES users(user_id),
+        Foreign key(idea_id) REFERENCES ideas(idea_id)
     );
     --add data
     insert into 
     comment(comment_id, comment, user_id, idea_id)
     VALUES
-    (1 ,'Cool man love that people show love',1 ,1),
-    (2 ,'Better to apply for clarity',1 ,2);
+    (1 ,'Cool man love that people show love',16 ,1),
+    (2 ,'Better to apply for clarity',17 ,2);
 
     --Read data
     SELECT * FROM comment;
@@ -102,16 +102,16 @@
         testimony VARCHAR(255),
         user_id  int,
         idea_id  int,
-        created_at TiMESTAMP DEFAULT NOW(),
-        Foreign key(user_id) REFERENCES  user(user_id),
-        Foreign key(idea_id) REFERENCES idea_table(idea_id)
+        created_at DateTiME,
+        Foreign key(user_id) REFERENCES  users(user_id),
+        Foreign key(idea_id) REFERENCES ideas(idea_id)
     );
     --add data 
     insert into 
     testimony(testimony_id, testimony, user_id, idea_id)
     VALUES
-    (1,'Best of all platform here i find best way to solve many problems in a simple way ' ,1 ,1),
-    (2,'Willing to show you ways out solve is the best of all compassion ever seen in this platform' ,2 ,1);
+    (1,'Best of all platform here i find best way to solve many problems in a simple way ' ,17 ,1),
+    (2,'Willing to show you ways out solve is the best of all compassion ever seen in this platform' ,16 ,1);
 
     --Read data
     SELECT * FROM testimony;
@@ -122,7 +122,7 @@
     CREATE TABLE domain(
         domain_id int Primary key,
         domain_name VARCHAR(255), 
-        added_on TiMESTAMP DEFAULT NOW()
+        added_on DateTiME
     ); 
     --add data
     insert into 
@@ -143,10 +143,10 @@
         user_id int,
         new_idea_text varchar(255),
         domain_id int,
-        created_at TiMESTAMP DEFAULT NOW(),
+        created_at DateTiME,
         foreign key(domain_id) REFERENCES domain(domain_id),
-        foreign key(user_id) REFERENCES user(user_id),
-        foreign key(idea_id) REFERENCES idea_table(idea_id)
+        foreign key(user_id) REFERENCES users(user_id),
+        foreign key(idea_id) REFERENCES ideas(idea_id)
     );
     --add data
     insert into corrected_idea(
@@ -157,8 +157,8 @@
         user_id
     )
     VALUES
-    (1,2 ,'Depends from how your environment defines love but from relgious way its good and holy to love no matter who they are because God loves us.' , 2,2),
-    (2,1 ,'Depends when you use ether both the left and right is when you use clear both' , 1,1);
+    (1,2 ,'Depends from how your environment defines love but from relgious way its good and holy to love no matter who they are because God loves us.' , 2,16),
+    (2,1 ,'Depends when you use ether both the left and right is when you use clear both' , 1,17);
     --Read data
     SELECT * FROM corrected_idea;
 
@@ -168,12 +168,12 @@
     CREATE TABLE collection_table(
         collect_id int Primary key,
         idea_id int,
-        created_at TiMESTAMP DEFAULT NOW(),
+        created_at DateTiME,
         user_id int,
         domain_id int,
         Foreign key(domain_id) REFERENCES domain(domain_id),
-        Foreign key(user_id) REFERENCES user(user_id) ,
-        Foreign key(idea_id) REFERENCES idea_table(idea_id)
+        Foreign key(user_id) REFERENCES users(user_id) ,
+        Foreign key(idea_id) REFERENCES ideas(idea_id)
     );
     --add data
     insert into collection_table(
@@ -183,8 +183,8 @@
         domain_id
     )
     VALUES
-    (1,1,2 ,2),
-    (2,2 ,1 ,1);
+    (1,1,17 ,2),
+    (2,2 ,16 ,1);
     --Read data
     SELECT * FROM collection_table;
 
@@ -199,8 +199,8 @@
         domain_id int,
         follow_id int,
         collect_id int,
-        Foreign key(user_id) REFERENCES user(user_id),
-        Foreign key(idea_id) REFERENCES idea_table(idea_id),
+        Foreign key(user_id) REFERENCES users(user_id),
+        Foreign key(idea_id) REFERENCES ideas(idea_id),
         Foreign key(domain_id) REFERENCES domain(domain_id),
         Foreign key(follow_id) REFERENCES follow(follow_id), 
         Foreign key(comment_id) REFERENCES comment(comment_id),
@@ -217,8 +217,8 @@
         collect_id
     )
     VALUES
-    (1, 2, 1, 2, 1, 2,1),
-    (2, 1, 2, 1, 1, 2,1);
+    (1, 16, 1, 2, 1, 2,1),
+    (2, 17, 2, 1, 1, 2,1);
     --Read data
     SELECT * FROM profile;
 
@@ -227,13 +227,13 @@
     ------------------------
     CREATE TABLE adverts(
         ad_id int NOT NULL Primary key, 
-        created_at TiMESTAMP DEFAULT NOW(),
+        created_at DateTiME,
         user_id int NOT NULL,
         ad_image VARCHAR(255) NOT NULL,
         ad_message VARCHAR(255) NOT NULL,
         ad_source VARCHAR(255) NOT NULL,
         ad_clicks int DEFAULT 0,
-        Foreign key(user_id) REFERENCES user(user_id)  
+        Foreign key(user_id) REFERENCES users(user_id)  
     );
     --add data
     insert into adverts(
@@ -244,8 +244,8 @@
         ad_source
     ) 
     VALUES
-    (1,1 ,'my_ad.png' , 'Get connected to our annual bootcamp start from june 25th 2023', 'bonlu-bootcamp.com'),
-    (2,2 ,'may_ad.jpg' , 'May for majors in getting the most to be an influencer of love ', 'lovers-hub.com/get-involved');
+    (1,17 ,'my_ad.png' , 'Get connected to our annual bootcamp start from june 25th 2023', 'bonlu-bootcamp.com'),
+    (2,16 ,'may_ad.jpg' , 'May for majors in getting the most to be an influencer of love ', 'lovers-hub.com/get-involved');
     --Read data
     SELECT * FROM adverts
     --Query OK, 0 rows affected (0.96 sec)

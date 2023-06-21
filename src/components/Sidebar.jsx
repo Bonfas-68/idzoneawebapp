@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { Link } from "react-router-dom";
 import {
   FaConfluence,
   FaHome,
@@ -10,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({setToggleLogin}) => {
   const [users, setUsers] = useState();
 
   return (
@@ -18,7 +19,9 @@ const Sidebar = () => {
       <div className="b__sidebar-button">
         <button className="active-btn">
           <FaHome className="btn-symbol" />
-          <span className="b__sidebar-button--text">Home</span>
+          <span className="b__sidebar-button--text">
+            <a href="/home">Home</a>
+            </span>
         </button>
       </div>
       <div className="b__sidebar-button">
@@ -51,7 +54,10 @@ const Sidebar = () => {
       <div className="b__sidebar-button">
         <button>
           <FaLongArrowAltUp className="btn-symbol" />
-          <span className="b__sidebar-button--text">Logout</span>
+          <span className="b__sidebar-button--text">Logout</span> 
+          <span className="b__sidebar-button--text" 
+          onClick={()=> setToggleLogin(true)}
+          >Login</span>
         </button>
       </div>
       <div className="b__sidebar-button">

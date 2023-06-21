@@ -1,0 +1,92 @@
+.b__home{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: #011723e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+
+    .close__form{
+        position: absolute;
+        top: 5%;
+        right: 3%;
+        width: 5rem;
+        height: 5rem;
+        border: 3px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        &:hover{
+            border: 1px solid #99def3;
+        }
+
+        &-icon{
+            font-size: 3rem;
+            color: #e0e9eb;
+            cursor: pointer;
+
+            &:hover{
+                color: #cfd3d4;
+            }
+        }
+    }
+
+    &-form{
+        // min-width: 50%;
+        margin: 0 auto;
+        background-color: #085268;
+        padding: 2.1rem 4.2rem;
+        text-align: center;
+        border-radius: .3rem;
+        &--control{
+            margin-bottom: 16px;
+            width: 100%;
+            text-align: left;
+
+            label{
+                display: block;
+                margin: 10px 0 1.2rem;
+                font-size: 1.6rem;
+            }
+            input{
+                padding: 12px 24px;
+                border: none;
+                border-radius: .3rem;
+                font-size: 2.1rem;
+                box-shadow: -4px 6px 1px #0113186f;
+                background-color: #fcfcfcca;
+                color: #011a20;
+                transition: transform .3s ease;
+                &:focus{
+                    outline: none;
+                }  
+                &:hover{
+                    transform: translateY(-.1rem);
+                    background-color: #e0e9eb;
+                }
+            }
+            
+        }
+        .form__btn{
+            padding: 1.2rem 2.4rem;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: .4rem;
+            cursor: pointer;
+            color: #011a20;
+            font-weight: 600;
+            margin-top: 1.3rem;
+            transition: transform .3s ease;
+            &:hover{
+                transform: translateY(-.3rem);
+                background-color: #e0e9eb;
+            }
+        }
+    }
+}

@@ -32,7 +32,7 @@
 --FOLLOW TABLE
     --------------------------
     CREATE TABLE follow(
-        follow_id int Primary key, 
+        follow_id int IDENTITY(1,1) Primary key, 
         user_id int, 
         Foreign key(user_id) REFerences users(user_id)
     );
@@ -51,7 +51,7 @@
 --iDEA TABLE
     -------------------------
     CREATE TABLE ideas (
-        idea_id int Primary key,
+        idea_id int IDENTITY(1,1) Primary key,
         user_id int,
         idea_text VARCHAR(255),
         idea_img VARCHAR(255),
@@ -76,7 +76,7 @@
 --COMMENT TABLE
     ------------------------
     CREATE TABLE comment(
-        comment_id int Primary key,
+        comment_id int IDENTITY(1,1) Primary key,
         comment VARCHAR(255),
         user_id int,
         idea_id int, 
@@ -98,7 +98,7 @@
 --TESTiMONiAL TABLE
     ------------------------
     CREATE TABLE testimony(
-        testimony_id int Primary key,
+        testimony_id int IDENTITY(1,1) Primary key,
         testimony VARCHAR(255),
         user_id  int,
         idea_id  int,
@@ -120,7 +120,7 @@
 --DOMAin TABLE
     ------------------------
     CREATE TABLE domain(
-        domain_id int Primary key,
+        domain_id int IDENTITY(1,1) Primary key,
         domain_name VARCHAR(255), 
         added_on DateTiME
     ); 
@@ -138,7 +138,7 @@
 --CORRECTiON iDEAS TABLE
     ------------------------
     CREATE TABLE corrected_idea(
-        corrected_id int Primary key,
+        corrected_id int IDENTITY(1,1) Primary key,
         idea_id int,
         user_id int,
         new_idea_text varchar(255),
@@ -166,7 +166,7 @@
 --COLLECTiON /SAVED iDEAS TABLE
     ------------------------
     CREATE TABLE collection_table(
-        collect_id int Primary key,
+        collect_id int IDENTITY(1,1) Primary key,
         idea_id int,
         created_at DateTiME,
         user_id int,
@@ -192,7 +192,7 @@
 --PROFiLE  TABLE
     ------------------------
     CREATE TABLE profile(
-        profile_id int Primary key,
+        profile_id int IDENTITY(1,1) Primary key,
         user_id int,
         idea_id int,
         comment_id int,
@@ -226,7 +226,7 @@
 --ADVERTS  TABLE
     ------------------------
     CREATE TABLE adverts(
-        ad_id int NOT NULL Primary key, 
+        ad_id int IDENTITY(1,1) Primary key, 
         created_at DateTiME,
         user_id int NOT NULL,
         ad_image VARCHAR(255) NOT NULL,

@@ -1,50 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from "axios"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
-const Register = () => {
-  const [user, setUser] = useState({
-    username: '',
-    user_email: '',
-    user_password: ''
-  })
-  const nameRef = useRef()
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  
+const Register = ({setToggleLogin}) => {
   const navigate = useNavigate()
-
-    const newUser = {
-      username: nameRef.current.value,
-      user_email: emailRef.current.value,
-      user_password: passwordRef.current.value
-    }
-    setUser(newUser)
-
-  // const handleChange = async (e) =>{
-  //   setUser((user) => user={[e.target.name]:[e.target.value]})
-    
-  // }
-  const handleSubmit =async (e) =>{
-    e.preventDefault()
-    console.log(user)
-    navigate('/home')
+  const {handleSubmit,register, formState:{errors}} = useForm()
+  const onSubmit = async (data) =>{
+    const res = await axios.post("http://localhost:5000/auth/register", data)
+    const message = await res?.data?.message
+    alert(message)
+    setToggleLogin(true)
   }
   return (
-    <form>
-      <div className="form_control">
+    <form className='b__home-form' onSubmit={handleSubmit(onSubmit)}>
+      
+      <div className="b__home-form--control">
         <label htmlFor="username">Enter Username</label>
-        <input type="text" name="username" id="username" ref={nameRef}/>
+        <input type="text" placeholder="Username" {...register("username", {required:"Username is required", maxLength: 80})} />
+        <span className="error">{errors && errors.username?.message}</span>
       </div>
-
-      <div className="form_control">
-        <label htmlFor="user_email">Enter Email</label>
-        <input type="text" name="user_email" id="user_email" ref={emailRef}/>
+      <div className="b__home-form--control">
+        <label htmlFor="username">Enter Email</label>
+        <input type="email" placeholder="Email" {...register("user_email", {required:"Email Address is required", pattern: /^\S+@\S+$/i})} />
+        <span className="error">{errors && errors.user_email?.message}</span>
       </div>
-      <div className="form_control">
+      <div className="b__home-form--control">
         <label htmlFor="user_password">Enter Password</label>
-        <input type="text" name="user_password" id="user_password" ref={passwordRef}/>
+        <input type="password" placeholder="Password" {...register("user_password", {required:"Password is required", maxLength: 50})} />
+        <span className="error">{errors && errors.user_password?.message}</span>
       </div>
-      <input type="submit" value="Register" onClick={handleSubmit}/>
+      <input className='form__btn' type="submit" value="Register" />
     </form>
   )
 }

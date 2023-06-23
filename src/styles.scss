@@ -42,11 +42,50 @@ body {
 //           ) [col-end] 1.5% 15%;
 //     }   
 // }
+.welcome{
+  grid-column: 1 / 2;
+  padding: 1rem;
+  background-color: #261900;
+  // box-shadow: -4px 2px 4px 4px #ccc;
+  border-radius: .5rem;
+
+
+
+  &__icon{
+    font-size: 10rem;
+    color: #fff;
+    border: 2px solid #035677;
+    padding: 1rem;
+    border-radius: 50%;
+  }
+  &__text{
+    font-size: 1.5rem;
+    color: #fff;
+    line-height: 1.2;
+    width: 90%;
+    margin: 1rem 0;
+  }
+  &__name{
+    font-size: 2.1rem;
+    color: #eef3f5;
+    margin-bottom: .5rem;
+    text-transform: capitalize;
+  }
+  &__email{
+    font-size: 1.2rem;
+    margin: 1rem 0;color
+    :#b0f0ff;
+
+    &::first-letter{
+      text-transform: capitalize;
+    }
+  }
+}
 .b {
   &__sidebar {
     // background: yellow;
     grid-column: 1 / 2;
-    grid-row: 1 / span 3;
+    grid-row: 2 / span 3;
     width: 90%;
     margin: 0 auto;
     margin-top: 2rem;
@@ -205,7 +244,7 @@ body {
   &__add-ideas {
     transform: translateY(1.9rem);
     grid-column: 3 / span 5;
-    grid-row: 1;
+    grid-row: 1/ 2;
     // border: 2px solid red;
     // background-color: red;
     &--btns {

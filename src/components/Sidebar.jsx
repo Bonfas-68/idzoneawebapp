@@ -20,7 +20,7 @@ const Sidebar = ({setToggleLogin}) => {
         <button className="active-btn">
           <FaHome className="btn-symbol" />
           <span className="b__sidebar-button--text">
-            <a href="/home">Home</a>
+            <a href="/">Home</a>
             </span>
         </button>
       </div>

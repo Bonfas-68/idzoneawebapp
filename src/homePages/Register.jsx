@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom"
 
 const Register = ({setToggleLogin}) => {
   const navigate = useNavigate()
+  let message
   const {handleSubmit,register, formState:{errors}} = useForm()
   const onSubmit = async (data) =>{
     const res = await axios.post("http://localhost:5000/auth/register", data)
-    const message = await res?.data?.message
-    alert(message)
-    setToggleLogin(true)
+    message = await res?.data?.message
+    navigate("/login")
   }
   return (
-    <form className='b__home-form' onSubmit={handleSubmit(onSubmit)}>
-      
+    <form className='b__home-form register' onSubmit={handleSubmit(onSubmit)}>
+      <span className="message">{message}</span>
+      <div className="b__home-form--control">
+        <label htmlFor="profile">Upload Profile Image</label>
+        <input type="file" style={{display:"none"}} {...register("profile",{required: false})} id="profile"/>
+      </div>
       <div className="b__home-form--control">
         <label htmlFor="username">Enter Username</label>
         <input type="text" placeholder="Username" {...register("username", {required:"Username is required", maxLength: 80})} />

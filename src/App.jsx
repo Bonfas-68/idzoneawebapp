@@ -15,13 +15,11 @@ function App() {
   return (
     <BrowserRouter>
       <Sidebar setToggleLogin={setToggleLogin}/>
-      {toggleLogin && <Home setToggleLogin={setToggleLogin}/>}
       <Routes>
-        <Route path="/" element={toggleLogin ? <Home/> : <Register setToggleLogin={setToggleLogin}/>}/>
+        <Route path="/login" element={<Home />} />
+        <Route path="/" element={<Register />}/>
         <Route path="/app" element={<IdeaLayout/>} />
       </Routes>
-      
-
       <Categories /> 
     </BrowserRouter>
   )

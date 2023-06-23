@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import datas from '../roomdata'
-import Idea from './components/idea'
+import Ideas from './components/idea'
+import AddIdea from './components/AddIdea'
 
-const Appideas = () => {
+const Appideas = ({user}) => {
     const [data,setData] = useState(datas)
   return (
     <div className='b__ideas'>
         {
             data.map((idea)=>{
                 return(
-                    <Idea key={idea.id} {...idea}/>
+                    <Ideas key={idea.id} {...idea}/>
                 )
             })
         }

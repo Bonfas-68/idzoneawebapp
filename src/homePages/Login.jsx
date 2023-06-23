@@ -8,15 +8,21 @@ const Login = ({setToggleLogin}) => {
     const navigate = useNavigate()
     const {handleSubmit, register, formState:{errors}} = useForm()
     const onSubmit =async(data) =>{
-      const res = await axios.post("http://localhost:5000/auth/login", data)
-      const message = await res?.data?.message
-      alert(message)
-      setToggleLogin(false)
-      navigate("/app")
+      try{
+        const res = await axios.post("http://localhost:5000/auth/login", data)
+        const userData = await res.data;
+        const message = await userData?.message
+        alert(message)
+        navigate("/app",{state:{user:userData}})
+      }catch(err){
+        const errMsg = userData?.data?.error
+        console.log(errMsg)
+      }
     }
 
   return (
     <form className='b__home-form' onSubmit={handleSubmit(onSubmit)}>
+      
       <div className="b__home-form--control">
         <label htmlFor="username">Enter Username</label>
         <input type="text" {...register("username",{required: "Username is required"})} id="username"/>

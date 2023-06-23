@@ -23,7 +23,7 @@ body {
     ) [col-end] 4.5rem 26rem;
   gap: 11.5px;
   row-gap: 3rem;
-  grid-template-rows: min-content repeat(4, 13.6rem);
+  grid-template-rows: 15% repeat(4, 13.6rem);
 }
 @media only screen and (max-width:900px){
     #root{
@@ -31,7 +31,7 @@ body {
             4,
             13rem
           ) [col-end] .5rem 15rem;
-          grid-template-rows: 15rem repeat(3, 13.6rem)
+          // grid-template-rows: 15 repeat(3, 13.6rem)
     }   
 }
 // @media only screen and (max-width:600px){
@@ -42,17 +42,30 @@ body {
 //           ) [col-end] 1.5% 15%;
 //     }   
 // }
+
+$primary-color:#f0fdfa;
+$primary-color:#ccfbf1;
+$primary-color:#99f6e4;
+$primary-color:#5eead4;
+$primary-color:#2dd4bf;
+$primary-color:#14b8a6;
+$primary-color:#0d9488;
+$primary-color:#0f766e;
+$primary-color:#115e59;
+$primary-color:#134e4a;
+$primary-color:#042f2e;
 .welcome{
   grid-column: 1 / 2;
   padding: 1rem;
-  background-color: #261900;
+  background-color: #042f2e;
   // box-shadow: -4px 2px 4px 4px #ccc;
   border-radius: .5rem;
+  height: 135%;
 
 
 
   &__icon{
-    font-size: 10rem;
+    font-size: 5rem;
     color: #fff;
     border: 2px solid #035677;
     padding: 1rem;
@@ -66,7 +79,7 @@ body {
     margin: 1rem 0;
   }
   &__name{
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     color: #eef3f5;
     margin-bottom: .5rem;
     text-transform: capitalize;
@@ -148,7 +161,7 @@ body {
     }
   }
   &__ideas {
-    transform: translateY(0rem);
+    // transform: translateY(0rem);
     grid-column: 3/8;
     grid-row: 2/-1;
     height: calc(100vh - 15rem);

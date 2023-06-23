@@ -9,7 +9,7 @@ const IdeaLayout = () => {
   const user = state.user;
   return (
     <>
-      {user?.token && <AddIdea />}
+      {user?.token && <AddIdea user={user}/>}
       <div className="welcome">
         <AiOutlineUser className="welcome__icon"/>
         <h2 className="welcome__name">Welcome!  {user?.username}✨</h2>

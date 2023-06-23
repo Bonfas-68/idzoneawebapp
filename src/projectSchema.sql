@@ -12,7 +12,7 @@
         user_location VARCHAR(255),
         user_password VARCHAR(255),
         user_confirm_password VARCHAR(255),
-        created_at DATETIME
+        created_at DATETIME current_timestamp
     );
 --Query OK, 0 rows affected (0.89 sec)
     insert into users (

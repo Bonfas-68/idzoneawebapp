@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import { useForm } from "react-hook-form";
 import {
   FaFile,
   FaPhotoVideo,
@@ -6,16 +8,27 @@ import {
   FaVideo,
 } from "react-icons/fa";
 
-const AddIdea = () => {
+const AddIdea = ({user}) => {
+  const {handleSubmit, register, formState:{errors}} = useForm()
+  const onSubmit = async (data)=>{
+    if(user?.token){
+      await axios.post("http://localhost:5000/ideas",{user_id:user?.user_id,idea_text:data.idea_text},{
+        headers:{"Authorization": `${user.token}`}
+      })
+    }else{
+      alert(res.data.error)
+    }
+  }
   return (
     <div className="b__add-ideas">
-      <form>
+      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
         <div className="b__form-control">
           <textarea
-            name="idea"
+            {...register("idea_text", {required: "Add some text to verify your ways of doing things..."})}
             id="idea"
             placeholder="Tell me how you did it?"
           ></textarea>
+          <span className="error">{errors?.idea_text?.message}</span>
         </div>
         <div className="b__add-ideas--btns">
           <div className="btn">
@@ -34,10 +47,8 @@ const AddIdea = () => {
             <input style={{display: "none"}} type="file" name="textFile" id="textFile" />
           </div>
           <button type="submit" className="btn__add">
-            
               <FaShare  className="form-icon"/>
-            
-            add
+              add
           </button>
         </div>
       </form>

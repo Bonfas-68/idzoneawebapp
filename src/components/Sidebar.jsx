@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import {
@@ -13,6 +14,10 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = ({setToggleLogin}) => {
   const [users, setUsers] = useState();
+  const fetchUserData =  async () =>
+  {
+   const res = axios.get("http://localhost:5000/profile/") 
+  }
 
   return (
     <div className="b__sidebar">
@@ -25,7 +30,7 @@ const Sidebar = ({setToggleLogin}) => {
         </button>
       </div>
       <div className="b__sidebar-button">
-        <button>
+        <button onClick={fetchUserData}>
           <FaUser className="btn-symbol" />
           <span className="b__sidebar-button--text">Profile</span>
         </button>

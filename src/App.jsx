@@ -11,8 +11,10 @@ import Register from "./homePages/Register"
 import Profile from "./components/Profile"
 
 
+
 function App() {
   const [toggleLogin, setToggleLogin] = useState(false)
+
   return (
     <BrowserRouter>
       <Sidebar setToggleLogin={setToggleLogin}/>
@@ -20,8 +22,6 @@ function App() {
         <Route path="/login" element={<Home />} />
         <Route path="/" element={<Register />}/>
         <Route path="/profile" element={<Profile />}/>
-        
-
         <Route path="/app" element={<IdeaLayout/>} />
       </Routes>
       <Categories /> 

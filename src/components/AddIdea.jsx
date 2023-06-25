@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useForm } from "react-hook-form";
 import {
   FaFile,
@@ -8,13 +7,14 @@ import {
   FaVideo,
 } from "react-icons/fa";
 
-const AddIdea = ({user}) => {
-  const {handleSubmit, register, formState:{errors}} = useForm()
+const AddIdea = ({user, fetchIdeas}) => {
+  const {handleSubmit, register,reset, formState:{errors}} = useForm()
   const onSubmit = async (data)=>{
     if(user?.token){
       await axios.post("http://localhost:5000/ideas",{user_id:user?.user_id,idea_text:data.idea_text},{
         headers:{"Authorization": `${user.token}`}
       })
+      reset()
     }else{
       alert(res.data.error)
     }
@@ -46,7 +46,7 @@ const AddIdea = ({user}) => {
             <label htmlFor="textFile">Upload file</label>
             <input style={{display: "none"}} type="file" name="textFile" id="textFile" />
           </div>
-          <button type="submit" className="btn__add">
+          <button type="submit" className="btn__add" onClick={()=> fetchIdeas()}>
               <FaShare  className="form-icon"/>
               add
           </button>

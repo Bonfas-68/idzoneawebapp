@@ -1,9 +1,21 @@
+import { useState } from "react";
 import ideasPhoto from "../images/post-1.jpg";
 import userimage from "../images/user-1.jpg";
-const Idea = ({ myideas }) => {
+import Reactions from "./Reactions";
+import Comments from "./Comments";
+const Idea = ({ myideas, user }) => {
+    const [toggleComments, setToggleComments] = useState(false)
+    const showComments = (id) =>{
+      if(!id){
+        setToggleComments(false)
+      }else{
+        setToggleComments(!toggleComments)
+      }
+    }
   return (
     myideas.map((idea, index) => (
-      <div className="b__idea">
+      <div key={idea?.idea_id} className="b__idea">
+        <Reactions id={idea?.idea_id} showComments={showComments}/>
         <div className="b__idea-image">
           <img src={ideasPhoto} alt="photo" />
         </div>
@@ -25,6 +37,8 @@ const Idea = ({ myideas }) => {
         <div className="b__idea-votes">
           <span>{idea?.votes}</span>
         </div>
+        {toggleComments && idea?.idea_id &&
+        <Comments user={user} idea_id={idea?.idea_id}/>}
       </div>
     ))
   );

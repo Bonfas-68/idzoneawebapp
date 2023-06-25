@@ -21,7 +21,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Home />} />
         <Route path="/" element={<Register />}/>
-        <Route path="/profile" element={<Profile />}/>
         <Route path="/app" element={<IdeaLayout/>} />
       </Routes>
       <Categories /> 

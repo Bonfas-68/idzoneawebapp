@@ -57,8 +57,6 @@ $primary-color:#042f2e;
 .welcome{
   grid-column: 1 / 2;
   padding: 1rem;
-  // background-color: #042f2e;
-  // box-shadow: -4px 2px 4px 4px #ccc;
   border-radius: .5rem;
   height: 135%;
   background: linear-gradient(
@@ -68,13 +66,24 @@ $primary-color:#042f2e;
     ), linear-gradient(127deg, #000a09, #3e8786 70.71%),
     linear-gradient(336deg, #00ffc8, #042f2e 70.71%);
 
+    button{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
 
+      span{
+        font-size: 16px;color: #ccfbf1;
+      }
+    }
 
 
   &__icon{
     font-size: 5rem;
     color: #fff;
-    border: 2px solid #035677;
+    border: 2px solid #e9eef0;
     padding: 1rem;
     border-radius: 50%;
   }
@@ -101,6 +110,127 @@ $primary-color:#042f2e;
     }
   }
 }
+.profile{
+  // transform: translateY(0rem);
+  grid-column: 3/8;
+  grid-row: 2/-1;
+  height: calc(100vh - 15rem);
+  // padding: 0 1rem;
+  padding-bottom: 3rem;
+  overflow-y: scroll;
+  width: 100%;
+  &-intro{
+    width: 100%;
+    height: 25%;
+    object-fit: cover;
+    background-image: url(./images/idea.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+
+    & span{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-4rem);
+      right: 10%;
+      font-size: 4vw;
+      color: #ffffff;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      text-shadow: 0.1rem .2rem .4rem #01232e;
+    }
+  }
+
+  &-bio{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem;
+
+    .user_info{
+      flex: 2;
+      .user_icon{
+        transform: translateY(-4.5rem);
+        font-size: 7rem;
+        border-radius: 50%;
+        padding: .7rem;
+        border: 2px solid #00ffc8;
+      }
+      p{
+        font-size: 1.6rem;
+        color: #e9eef0;
+      }
+      h6{
+        font-size: 2.1rem;
+        color: #b0f0ff;
+        margin-top: 1.4rem;
+        font-weight: 100;
+      }
+      h4{
+        margin-top: -2rem;
+        font-size: 2.4rem;
+        color: #ccfbf1;
+        font-weight: 300;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+      }
+
+    }
+    .user_ideas{
+      flex: 3;
+      h2{
+        font-size: 3.2rem;
+        margin-bottom: 1rem;
+        color: #eef3f5;
+        font-weight: 400;
+      }
+      .idea{
+        margin-bottom: 1.6rem;
+        padding: .5rem .7rem;
+        box-shadow: 0 2px 4px #ccc;
+        border-radius: .4rem;
+
+        p{
+          font-size: 1.6rem;
+          line-height: 1.4;
+          color: #fff;
+        }
+         & span{
+          display: flex;
+          align-items: center;
+          gap: 1.2rem;
+
+          em{
+            color: #b0f0ff;
+          }
+         }
+        &_icon{
+          font-size: 2.4rem;
+        }
+
+      }
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+
+    &-button {
+      height: 2px;
+      background: transparent;
+    }
+    &-track {
+      height: 2px;
+    }
+    &-thumb {
+      background-color: #82b1bb;
+      height: 5px;
+      width: 10%;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+  }
+}
 .b {
   &__sidebar {
     // background: yellow;
@@ -112,6 +242,16 @@ $primary-color:#042f2e;
     // padding: 0 1.2rem;
     &-button {
       width: 100%;
+      &--text {
+        text-decoration: none;
+        margin-left: 1.2rem;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        color: #b0f0ff;
+        font-weight: 600;
+        
+        cursor: pointer;
+      }
 
       button {
         border: none;
@@ -128,15 +268,7 @@ $primary-color:#042f2e;
           font-weight: 300;
         }
 
-        span {
-          margin-left: 1.2rem;
-          font-size: 1.6rem;
-          letter-spacing: 1px;
-          color: #b0f0ff;
-          font-weight: 600;
-          
-          cursor: pointer;
-        }
+        
         @media only screen and (max-width:900px){
             span{display: none;}   
             .btn-symbol {font-size: 3rem;} 

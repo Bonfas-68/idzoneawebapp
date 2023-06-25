@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const Register = ({setToggleLogin}) => {
   const navigate = useNavigate()
@@ -34,6 +34,7 @@ const Register = ({setToggleLogin}) => {
         <span className="error">{errors && errors.user_password?.message}</span>
       </div>
       <input className='form__btn' type="submit" value="Register" />
+      <p>Have an account!! <Link to="/login">login</Link> </p>
     </form>
   )
 }

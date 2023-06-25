@@ -10,7 +10,7 @@ import {
   FaUsers,
   FaVoteYea,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({setToggleLogin}) => {
   const [users, setUsers] = useState();
@@ -24,15 +24,9 @@ const Sidebar = ({setToggleLogin}) => {
       <div className="b__sidebar-button">
         <button className="active-btn">
           <FaHome className="btn-symbol" />
-          <span className="b__sidebar-button--text">
-            <a href="/">Home</a>
-            </span>
-        </button>
-      </div>
-      <div className="b__sidebar-button">
-        <button onClick={fetchUserData}>
-          <FaUser className="btn-symbol" />
-          <span className="b__sidebar-button--text">Profile</span>
+          <Link to="/" className="b__sidebar-button--text">
+            Home
+            </Link>
         </button>
       </div>
       <div className="b__sidebar-button">
@@ -59,10 +53,10 @@ const Sidebar = ({setToggleLogin}) => {
       <div className="b__sidebar-button">
         <button>
           <FaLongArrowAltUp className="btn-symbol" />
-          <span className="b__sidebar-button--text">Logout</span> 
-          <span className="b__sidebar-button--text" 
+          <Link to="/" className="b__sidebar-button--text">Logout</Link> 
+          <Link to="/login"  className="b__sidebar-button--text" 
           onClick={()=> setToggleLogin(true)}
-          >Login</span>
+          >Login</Link>
         </button>
       </div>
       <div className="b__sidebar-button">

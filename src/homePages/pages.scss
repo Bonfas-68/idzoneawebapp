@@ -95,4 +95,15 @@
     margin: 0 auto;
     grid-column: 2 / span 7;
     grid-row: 2 / 5;
+
+    p{
+        font-size: 16px;
+        margin-top: 10px;
+        color: #fff;
+
+        a{
+            font-size: 12px;
+            color: #99def3;
+        }
+    }
 }

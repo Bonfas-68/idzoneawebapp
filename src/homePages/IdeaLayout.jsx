@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import Appideas from "../Appideas";
 import AddIdea from "../components/AddIdea";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import axios from "axios";
+import { FaUser } from "react-icons/fa";
+import Welcome from "../components/Welcome";
+import Profile from "../components/Profile";
 
 const IdeaLayout = () => {
   
@@ -26,16 +29,13 @@ const IdeaLayout = () => {
     fetchIdeas()
   }, []);
   const myideas = data.map((idea, index) => idea)
+  const [toggleProfile, setToggleProfile] = useState(false)
   return (
     <>
       {user?.token && <AddIdea user={user} fetchIdeas={fetchIdeas} />}
-      <div className="welcome">
-        <AiOutlineUser className="welcome__icon" />
-        <h2 className="welcome__name">Welcome!  {user?.username}✨</h2>
-        <span className="welcome__email">{user?.user_email}</span>
-        <p className="welcome__text">Your friends would love to hear your way of doing things.</p>
-      </div>
-      <Appideas user={user} myideas={myideas} />
+      <Welcome user={user} toggleProfile={toggleProfile} setToggleProfile={setToggleProfile}/>
+      {toggleProfile ? <Profile idea={myideas} user={user}/> : 
+      <Appideas user={user} myideas={myideas} />}
     </>
   );
 };

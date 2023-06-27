@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { FaCommentSlash, FaUserCircle } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from "react";
+import { FaCommentSlash, FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Context } from "../context/userContext";
 
-const Comments = ({ user, idea_id }) => {
+const Comments = ({ idea_id }) => {
+  const {user} = useContext(Context)
   const [comments, setComments] = useState([]);
   const getComments = async () => {
     const res = await axios.get("http://localhost:5000/api/comments", {
@@ -17,6 +19,29 @@ const Comments = ({ user, idea_id }) => {
   useEffect(() => {
     getComments();
   }, [comments]);
+  const handleDelete = async(id) =>{
+  try{
+      const res = await axios.delete(`http://localhost:5000/api/comment/${id}`, {
+      headers: { Authorization: `${user.token}` },
+    });
+    const message = res.data
+    alert(message)
+  }catch(error){
+    alert(error.message)
+  }
+    
+  }
+  const handleEdit = async(id) =>{
+    try{
+    const res = await axios.put(`http://localhost:5000/api/comment/${id}`, {
+      headers: { Authorization: `${user.token}` },
+    });
+    const message = await res.data
+    alert(message)
+  }catch(error){
+    alert(error.message)
+  }
+  }
 
   const {
     handleSubmit,
@@ -62,6 +87,10 @@ const Comments = ({ user, idea_id }) => {
                 <span>{com.username}</span>
               </div>
               <p className="content">{com.comment}</p>
+              <div className="actions">
+                <FaTrash className="actions__icon" onClick={() => handleDelete(com.comment_id)} />
+                <FaEdit  className="actions__icon" onClick={() => handleEdit(com.comment_id)}/>
+              </div>
             </div>
           ))
         )}

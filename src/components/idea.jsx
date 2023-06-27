@@ -13,7 +13,7 @@ const Idea = ({ideas, fetchIdeas}) => {
     const showComments = () =>{
         setToggleComments(!toggleComments)
     }
-    const showUpdateForm = () =>{
+    const showUpdateForm = (id) =>{
         setToggleUpdate(true)
     }
     // ideas.map((ideas)=>)
@@ -21,7 +21,7 @@ const Idea = ({ideas, fetchIdeas}) => {
     ideas.map((idea,index) => (
       <div key={idea?.idea_id} className="b__idea">
         <Reactions fetchIdeas={fetchIdeas} user={user} idea={idea} showComments={showComments} showUpdateForm={showUpdateForm}/>
-        {toggleUpdate && idea?.idea_text  ? <UpdateIdea setToggleUpdate={setToggleUpdate}  idea={idea}  fetchIdeas={fetchIdeas} />: null}
+        {toggleUpdate && idea?.idea_id  ? <UpdateIdea setToggleUpdate={setToggleUpdate}  idea={idea}  fetchIdeas={fetchIdeas} />: null}
         <div className="b__idea-image">
           <img src={ideasPhoto} alt="photo" />
         </div>

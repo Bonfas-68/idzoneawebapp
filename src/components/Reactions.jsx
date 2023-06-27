@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FaComment,
   FaEdit,
@@ -9,16 +9,10 @@ import {
   FaTrash,
   FaVoteYea,
 } from "react-icons/fa";
+import { Context } from "../context/userContext";
 
-const Reactions = ({ showComments, showUpdateForm, user, idea }) => {
-  //get
-  const getideas = async () =>{
-    await axios.get(`http://localhost:5000/ideas`,
-    {
-      headers: { Authorization: `${user.token}` },
-    })
-  }
-  
+const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
+  const {user} = useContext(Context)
   //delete idea
   const deleteIdea = async (id) => {
     try {
@@ -28,6 +22,7 @@ const Reactions = ({ showComments, showUpdateForm, user, idea }) => {
         });
         const data = await res?.data?.message;
         alert(data);
+        fetchIdeas()
       } else {
         alert(res.data.error);
       }

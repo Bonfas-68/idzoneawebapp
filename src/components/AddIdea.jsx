@@ -18,7 +18,7 @@ const AddIdea = ({ fetchIdeas}) => {
     try {
       const res = await axios.post(
         "http://localhost:5000/ideas",
-        { user_id: user?.user_id, idea_text:data.ideas_text },
+        { user_id: user?.user_id, idea_text:data.idea_text },
         {
           headers: { Authorization: `${user.token}` },
         }

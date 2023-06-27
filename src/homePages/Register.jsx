@@ -28,9 +28,11 @@ const Register = ({ setToggleLogin }) => {
   const onSubmit = async (data) => {
     const user_image = await upload(data.file);
     const res = await axios.post("http://localhost:5000/auth/register",{user_image,...data} );
+    const joinDate = new Date()
+    let date = joinDate.toDateString()
     message = await res?.data?.message;
     
-    navigate("/login");
+    navigate("/login", {state:date});
   };
 
   return (
@@ -42,7 +44,7 @@ const Register = ({ setToggleLogin }) => {
         <input
           type="file"
           style={{ display: "none" }}
-          {...register("file", { required: false })}
+          name="file"
           id="profile"
         />
       </div>

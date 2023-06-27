@@ -54,6 +54,7 @@ const Comments = ({ user, idea_id }) => {
           <span>No comments!! add one</span>
         </div>
         ) : (
+          
           comments.map((com) => (
             <div className="comment">
               <div className="userinfo">

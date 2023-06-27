@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Context } from "../context/userContext";
 
 const Login = ({ setToggleLogin }) => {
+  const {login} = useContext(Context)
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -12,9 +14,8 @@ const Login = ({ setToggleLogin }) => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
-        const res = await axios.post("http://localhost:5000/auth/login", data)
-        const userData = await res.data;
-      navigate("/app", { state: userData });
+        await login(data)
+        navigate("/app");
     } catch (err) {
       const errMsg = err.message;
     }
@@ -41,6 +42,8 @@ const Login = ({ setToggleLogin }) => {
         <span className="error">{errors.user_password?.message}</span>
       </div>
       <input className="form__btn" type="submit" value="Login" />
+      <br />
+      <p style={{fontSize: "1.6rem", color: "#ccc"}}>Have no account &mnsb; <Link style={{color: "whitesmoke"}} to="/">register</Link></p>
     </form>
   );
 };

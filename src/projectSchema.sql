@@ -1,4 +1,5 @@
 --Create The database
+    drop database idzoneadb
     CREATE DATABASE idzoneadb;
     USE idzoneadb;
 --Create Tables for the database
@@ -10,9 +11,7 @@
         user_email VARCHAR(20),
         user_phone VARCHAR(10),
         user_location VARCHAR(255),
-        user_password VARCHAR(255),
-        user_confirm_password VARCHAR(255),
-        created_at DATETIME current_timestamp
+        user_password VARCHAR(255)
     );
 --Query OK, 0 rows affected (0.89 sec)
     insert into users (
@@ -57,10 +56,9 @@
         idea_img VARCHAR(255),
         idea_video VARCHAR(255),
         idea_file VARCHAR(255),
-        created_at DateTiME,
         votes int DEFAULT 0,
         likes int DEFAULT 0,
-        Foreign key(user_id) REFERENCES users(user_id)
+        Foreign key(user_id) REFERENCES users(user_id) on delete no action
     );
     insert into 
     ideas
@@ -80,9 +78,8 @@
         comment VARCHAR(255),
         user_id int,
         idea_id int, 
-        created_at DateTiME,
-        Foreign key(user_id) REFERENCES users(user_id),
-        Foreign key(idea_id) REFERENCES ideas(idea_id)
+        Foreign key(user_id) REFERENCES users(user_id) on delete no action,
+        Foreign key(idea_id) REFERENCES ideas(idea_id) on delete cascade
     );
     --add data
     insert into 
@@ -103,8 +100,8 @@
         user_id  int,
         idea_id  int,
         created_at DateTiME,
-        Foreign key(user_id) REFERENCES  users(user_id),
-        Foreign key(idea_id) REFERENCES ideas(idea_id)
+        Foreign key(user_id) REFERENCES  users(user_id) on delete no action,
+        Foreign key(idea_id) REFERENCES ideas(idea_id) on delete no action
     );
     --add data 
     insert into 
@@ -144,9 +141,9 @@
         new_idea_text varchar(255),
         domain_id int,
         created_at DateTiME,
-        foreign key(domain_id) REFERENCES domain(domain_id),
-        foreign key(user_id) REFERENCES users(user_id),
-        foreign key(idea_id) REFERENCES ideas(idea_id)
+        foreign key(domain_id) REFERENCES domain(domain_id) on delete no action,
+        foreign key(user_id) REFERENCES users(user_id) on delete no action,
+        foreign key(idea_id) REFERENCES ideas(idea_id) on delete no action
     );
     --add data
     insert into corrected_idea(
@@ -171,9 +168,9 @@
         created_at DateTiME,
         user_id int,
         domain_id int,
-        Foreign key(domain_id) REFERENCES domain(domain_id),
-        Foreign key(user_id) REFERENCES users(user_id) ,
-        Foreign key(idea_id) REFERENCES ideas(idea_id)
+        Foreign key(domain_id) REFERENCES domain(domain_id) on delete no action,
+        Foreign key(user_id) REFERENCES users(user_id) on delete no action ,
+        Foreign key(idea_id) REFERENCES ideas(idea_id) on delete no action
     );
     --add data
     insert into collection_table(
@@ -193,6 +190,7 @@
     ------------------------
     CREATE TABLE profile(
         profile_id int IDENTITY(1,1) Primary key,
+        bio varchar(1000),
         user_id int,
         idea_id int,
         comment_id int,
@@ -233,7 +231,7 @@
         ad_message VARCHAR(255) NOT NULL,
         ad_source VARCHAR(255) NOT NULL,
         ad_clicks int DEFAULT 0,
-        Foreign key(user_id) REFERENCES users(user_id)  
+        Foreign key(user_id) REFERENCES users(user_id) on delete no action  
     );
     --add data
     insert into adverts(

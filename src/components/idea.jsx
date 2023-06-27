@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ideasPhoto from "../images/post-1.jpg";
 import userimage from "../images/user-1.jpg";
 import Reactions from "./Reactions";
 import Comments from "./Comments";
-const Idea = ({ myideas, user }) => {
+import UpdateIdea from "./UpdateIdea";
+import { Context } from "../context/userContext";
+
+const Idea = ({ideas, fetchIdeas}) => {
+  const { user } = useContext(Context);
     const [toggleComments, setToggleComments] = useState(false)
-    const showComments = (id) =>{
-      if(!id){
-        setToggleComments(false)
-      }else{
+    const [toggleUpdate, setToggleUpdate] = useState(false)
+    const showComments = () =>{
         setToggleComments(!toggleComments)
-      }
     }
+    const showUpdateForm = () =>{
+        setToggleUpdate(true)
+    }
+    // ideas.map((ideas)=>)
   return (
-    myideas.map((idea, index) => (
+    ideas.map((idea,index) => (
       <div key={idea?.idea_id} className="b__idea">
-        <Reactions id={idea?.idea_id} showComments={showComments}/>
+        <Reactions fetchIdeas={fetchIdeas} user={user} idea={idea} showComments={showComments} showUpdateForm={showUpdateForm}/>
+        {toggleUpdate && idea?.idea_text  ? <UpdateIdea setToggleUpdate={setToggleUpdate}  idea={idea}  fetchIdeas={fetchIdeas} />: null}
         <div className="b__idea-image">
           <img src={ideasPhoto} alt="photo" />
         </div>

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
+import { Context } from '../context/userContext';
 
-const Welcome = ({user, toggleProfile, setToggleProfile}) => {
+const Welcome = ({toggleProfile, setToggleProfile}) => {
+  const { user } = useContext(Context);
   return (
     <div className="welcome">
         <button onClick={() =>setToggleProfile(!toggleProfile)}>
           <FaUser className="welcome__icon" />
+          {/* <img  className="welcome__icon"  src={user.user_image} alt="user profile image" /> */}
           <span className="welcome__button">Profile</span>
         </button>
         <h2 className="welcome__name">Welcome!  {user?.username}✨</h2>

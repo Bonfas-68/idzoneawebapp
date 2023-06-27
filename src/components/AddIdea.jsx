@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaFile,
@@ -6,18 +7,38 @@ import {
   FaShare,
   FaVideo,
 } from "react-icons/fa";
+import { Context } from "../context/userContext";
+// import { ContextIdeas } from "../context/ideasContext";
 
-const AddIdea = ({user, fetchIdeas}) => {
+const AddIdea = ({ fetchIdeas}) => {
+  const { user } = useContext(Context);
+  // const { createIdeas } = useContext(ContextIdeas);
   const {handleSubmit, register,reset, formState:{errors}} = useForm()
   const onSubmit = async (data)=>{
-    if(user?.token){
-      await axios.post("http://localhost:5000/ideas",{user_id:user?.user_id,idea_text:data.idea_text},{
-        headers:{"Authorization": `${user.token}`}
-      })
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/ideas",
+        { user_id: user?.user_id, idea_text:data.ideas_text },
+        {
+          headers: { Authorization: `${user.token}` },
+        }
+      );
+      const message = await res.data.message;
+      alert(message);
       reset()
-    }else{
-      alert(res.data.error)
+      fetchIdeas()
+    } catch (error) {
+      alert(error.message)
     }
+    // if(user?.token){
+    //   await axios.post("http://localhost:5000/ideas",{user_id:user?.user_id,idea_text:data.idea_text},{
+    //     headers:{"Authorization": `${user.token}`}
+    //   })
+    // reset()
+    // fetchIdeas()
+    // }else{
+    //   alert(res.data.error)
+    // }
   }
   return (
     <div className="b__add-ideas">
@@ -46,7 +67,7 @@ const AddIdea = ({user, fetchIdeas}) => {
             <label htmlFor="textFile">Upload file</label>
             <input style={{display: "none"}} type="file" name="textFile" id="textFile" />
           </div>
-          <button type="submit" className="btn__add" onClick={()=> fetchIdeas()}>
+          <button type="submit" className="btn__add">
               <FaShare  className="form-icon"/>
               add
           </button>

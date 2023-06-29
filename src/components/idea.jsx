@@ -20,7 +20,10 @@ const Idea = ({ idea, fetchIdeas }) => {
   const goReadMore = (idea) => {
     navigate("./readmore",{state: idea})
   };
-  console.log(idea)
+  const goToUserPage = (idea) => {
+    navigate("/userpage",{state: idea})
+  };
+  // console.log(idea)
   const showUpdateForm = (id) => {
     setToggleUpdate(true);
   };
@@ -46,7 +49,7 @@ const Idea = ({ idea, fetchIdeas }) => {
       </div>
       <div className="b__idea-user">
         <div className="b__user">
-          <div className="b__user-img">
+          <div style={{cursor:"pointer"}} className="b__user-img" onClick={()=> goToUserPage(idea)}>
             <img  className="user__icon"  src={`http://localhost:5000/uploads/${idea?.user_image}`} />
           </div>
           <div className="b__user-details">

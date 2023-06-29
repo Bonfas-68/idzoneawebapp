@@ -5,17 +5,19 @@ import Categories from "./components/Categories"
 import Sidebar from "./components/Sidebar"
 import IdeaLayout from "./homePages/IdeaLayout"
 import "./styles.scss"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Home from "./homePages/Home"
 import Register from "./homePages/Register"
-import Profile from "./components/Profile"
 import ReadMore from "./homePages/ReadMore"
 import UpdateIdea from "./components/UpdateIdea"
+import Welcome from "./components/Welcome"
+import { Context } from "./context/userContext"
 
 
 
 function App() {
   const [toggleLogin, setToggleLogin] = useState(false)
+  const {user} = useContext(Context)
   const [tyme, setTyme] =useState(new Date().toLocaleTimeString())
   useEffect(()=>{
     setInterval(() => {
@@ -24,7 +26,8 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
-    <div id="root_intro"><h1>A problem shared is problem halved!!! Share More @idzonea to help another </h1><span>{tyme >=12 ? `${tyme} PM` :`${tyme} AM` }</span></div>
+    {user && <Welcome />}
+    <div id="root_intro"><h1>A problem shared is problem halved!!! Share More @idzonea to help another </h1><span>{tyme.split(" ")[0] >= 12 ? `${tyme} PM` :`${tyme} AM` }</span></div>
       <Sidebar setToggleLogin={setToggleLogin}/>
       <Routes>
         <Route path="/login" element={<Home />} />

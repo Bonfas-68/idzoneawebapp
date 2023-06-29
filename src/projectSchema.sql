@@ -6,9 +6,10 @@
     CREATE TABLE users(
         user_id int IDENTITY(1,1) Primary key,
         username VARCHAR(25),
-        user_domain VARCHAR(50),
-        user_image VARCHAR(50),
-        user_email VARCHAR(20),
+        user_domain VARCHAR(100),
+        user_bio VARCHAR(255),
+        user_image VARCHAR(100),
+        user_email VARCHAR(255),
         user_phone VARCHAR(10),
         user_location VARCHAR(255),
         user_password VARCHAR(255)
@@ -52,7 +53,8 @@
     CREATE TABLE ideas (
         idea_id int IDENTITY(1,1) Primary key,
         user_id int,
-        idea_text VARCHAR(255),
+        idea_title VARCHAR(255),
+        idea_text VARCHAR(1000),
         idea_img VARCHAR(255),
         idea_video VARCHAR(255),
         idea_file VARCHAR(255),
@@ -73,7 +75,7 @@
     --Query OK, 0 rows affected (0.89 sec)
 --COMMENT TABLE
     ------------------------
-    CREATE TABLE comment(
+    CREATE TABLE comments(
         comment_id int IDENTITY(1,1) Primary key,
         comment VARCHAR(255),
         user_id int,

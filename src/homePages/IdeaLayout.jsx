@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Appideas from "../Appideas";
 import AddIdea from "../components/AddIdea";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import axios from "axios";
 import { FaUser } from "react-icons/fa";
@@ -60,6 +60,7 @@ const IdeaLayout = () => {
           <Loader error={error} loading={loading} load={load} />
         </>
       )}
+      <Outlet  fetchIdeas={fetchIdeas}/>
     </>
   );
 };

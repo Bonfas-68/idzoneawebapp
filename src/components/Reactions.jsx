@@ -10,6 +10,7 @@ import {
   FaVoteYea,
 } from "react-icons/fa";
 import { Context } from "../context/userContext";
+import update from "../images/create-outline.svg";
 
 const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
   const {user} = useContext(Context)
@@ -34,8 +35,8 @@ const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
   return (
     <div className="reactions">
       <button className="reactions__btn">
-        <FaHeart style={{ color: "red" }} className="reactions__btn-icon" />
-        <span>like</span>
+        <FaHeart style={{ color: "#00ffc8" }} className="reactions__btn-icon" />
+        <span className="votes">{idea?.votes}</span>
       </button>
       <button className="reactions__btn" onClick={() => showComments()}>
         <FaComment className="reactions__btn-icon" />
@@ -46,7 +47,7 @@ const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
           className="reactions__btn"
           onClick={() => deleteIdea(idea.idea_id)}
         >
-          <FaTrash style={{ color: "red" }} className="reactions__btn-icon" />
+          <FaTrash style={{ color: "#00ffc8" }} className="reactions__btn-icon" />
           <span>delete</span>
         </button>
       ) : (

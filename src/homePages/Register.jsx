@@ -1,23 +1,21 @@
 import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = ({ setToggleLogin }) => {
   const navigate = useNavigate();
-
-  const upload = async (file) => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await axios.post(
-        "http://localhost:5000/upload",
-        formData
-      );
-      return res.data
-    } catch (error) {
-      console.log(error);
+  const [file,setFile] = useState(null);
+  const validateFile = (file) => {
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (validTypes.indexOf(file.type) === -1) {
+      alert('File format is incorrect use .jpeg, .png or .jpg')
+    } else if (file.size > 1024 * 1024 * 5) {
+      alert('File size is too large')
+    } else {
+      return true;
     }
-  };
+  }
 
   let message;
   const {
@@ -25,19 +23,39 @@ const Register = ({ setToggleLogin }) => {
     register,
     formState: { errors },
   } = useForm();
+
+
   const onSubmit = async (data) => {
-    const user_image = await upload(data.file);
-    const res = await axios.post("http://localhost:5000/auth/register",{user_image,...data} );
-    const joinDate = new Date()
-    let date = joinDate.toDateString()
-    message = await res?.data?.message;
-    
-    navigate("/login", {state:date});
+    if (!file) {
+      alert('Please select an image');
+    }else {
+
+      validateFile(file);
+      let user_image = Date.now() + file.name;
+      const formData = new FormData();
+      formData.append('username', data.username);
+      formData.append('user_password', data.user_password);
+      formData.append('user_email', data.user_email);
+      formData.append('user_image', user_image);
+      formData.append('file', file);
+      // send to the server
+      // saveImage(formData);
+      try {
+        const res = await axios.post("http://localhost:5000/auth/register",formData);
+        const data = await res.data.message
+        alert(data)
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const joinDate = Date.now().toString() 
+    navigate("/login");
   };
 
   return (
     <div className="b__reg">
-    <form method="POST" className="b__home-form register" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+    <form className="b__home-form register" onSubmit={handleSubmit(onSubmit)} >
       <span className="message">{message}</span>
       <div className="b__home-form--control">
         <label htmlFor="profile">Upload Profile Image</label>
@@ -46,8 +64,10 @@ const Register = ({ setToggleLogin }) => {
           style={{ display: "none" }}
           name="file"
           id="profile"
+          onChange={(e)=> setFile(e.target.files[0])}
         />
       </div>
+      {file && <img src={URL.createObjectURL(file)} className="b__home-form--photo"/>}
       <div className="b__home-form--control">
         <label htmlFor="username">Enter Username</label>
         <input

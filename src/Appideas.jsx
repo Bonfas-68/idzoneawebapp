@@ -1,11 +1,14 @@
+import Idea from "./components/idea";
 import Ideas from "./components/idea";
 
 const Appideas = ({ideas, fetchIdeas}) => {
-  return (
+
+    return (
     <div className="b__ideas">
-        <Ideas ideas={ideas} fetchIdeas={fetchIdeas}/>
-    </div>
-  );
+    {ideas.map((idea) => (
+      <Idea key={idea?.idea_id} idea={idea} fetchIdeas={fetchIdeas}/>
+    ))}
+  </div>)
 };
 
 export default Appideas;

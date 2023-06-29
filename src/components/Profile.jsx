@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import NoIdeas from "./NoIdeas";
 import { Context } from "../context/userContext";
@@ -16,7 +17,8 @@ const Profile = ({ideas}) => {
           </div>
           <div className="profile-bio">
             <div className="user_info">
-              <FaUser className="user_icon"/>
+            <img  className="user_icon" width={50} height={50}  src={`http://localhost:5000/uploads/${user?.user_image}`} />
+              {/* <FaUser className="user_icon"/> */}
               <h4><p>Name: </p>{user.username}</h4>
               <h6><p>Email: </p>{user.user_email}</h6>
             </div>
@@ -25,8 +27,11 @@ const Profile = ({ideas}) => {
 
               {myt.length ? myt.map((text)=>(
                 <div className="idea">
-                  <p>{text.idea_text}</p>
-                  <span><FaUser className="idea_icon" /> <em>{text.username}</em></span>
+                  <h3>{text.idea_title}</h3>
+                  <p>{text.idea_text.slice(0,100)}...</p>
+                  <span>
+                  <img width={25} height={25}  className="idea__icon"  src={`http://localhost:5000/uploads/${user?.user_image}`} />
+                   <em>{text.username}</em></span>
                 </div>
               )): <NoIdeas />}
             </div>

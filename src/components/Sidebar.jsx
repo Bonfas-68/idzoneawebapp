@@ -10,6 +10,9 @@ import {
   FaUsers,
   FaVoteYea,
 } from "react-icons/fa";
+import {
+  AiOutlineHome,
+} from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({setToggleLogin}) => {
@@ -23,7 +26,7 @@ const Sidebar = ({setToggleLogin}) => {
     <div className="b__sidebar">
       <div className="b__sidebar-button">
         <button className="active-btn">
-          <FaHome className="btn-symbol" />
+          <AiOutlineHome className="btn-symbol" />
           <Link to="/" className="b__sidebar-button--text">
             Home
             </Link>

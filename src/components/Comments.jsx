@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Context } from "../context/userContext";
 import Comment from "./Comment";
+import { domain } from "../utils/Utils";
 
 const Comments = ({ idea_id }) => {
   const { user } = useContext(Context);
@@ -12,7 +13,7 @@ const Comments = ({ idea_id }) => {
 
   //get all comments
   const getComments = async () => {
-    const res = await axios.get("http://localhost:5000/api/comments", {
+    const res = await axios.get(`${domain}/api/comments`, {
       headers: { Authorization: `${user.token}` },
     });
     const filteredComments = res?.data?.filter(
@@ -35,7 +36,7 @@ const Comments = ({ idea_id }) => {
 
   const onSubmit = async (data) => {
     await axios.post(
-      "http://localhost:5000/api/comments",
+      `${domain}/api/comments`,
       { user_id: user.user_id, idea_id, comment: data.comment },
       {
         headers: { Authorization: `${user.token}` },

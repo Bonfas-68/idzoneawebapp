@@ -52,9 +52,21 @@ body {
     }
   }
 }
+@media only screen and (max-width: 900px) {
+  #root_intro{
+    justify-content: center;
+    gap: 2rem;
+    padding: .4rem 1.6rem;
+    h1{
+      font-size: 1.4rem;
+    }
+    span{
+      font-size: 1rem;
+    }
+  }
+}
 .load {
   grid-column: 4 / 6;
-
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -83,9 +95,18 @@ body {
 @media only screen and (max-width: 900px) {
   #root {
     grid-template-columns:
-      [sde-start] 10rem[sde-end full-start] 0.5rem [col-start] repeat(4, 13rem)
-      [col-end] 0.5rem 15rem;
-    // grid-template-rows: 15 repeat(3, 13.6rem)
+      [sde-start] 10rem[sde-end full-start] 0 [col-start] repeat(4, 13rem)
+      [col-end] 0 15rem;
+      column-gap: .2%;
+    grid-template-rows: 19% repeat(3, 13.6rem);
+  }
+}
+@media only screen and (max-width: 650px) {
+  #root {
+    grid-template-columns:10rem 1fr;
+    grid-template-rows: 25% repeat(3, 13.6rem);
+      column-gap: 0;
+      padding: 2rem;
   }
 }
 .read__more {
@@ -95,9 +116,6 @@ body {
   background-color: #000e0bd8;
   height: 100%;
   width: 100%;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   z-index: 999;
   &-icon {
     font-size: 4rem;
@@ -199,17 +217,19 @@ $primary-color: #042f2e;
     linear-gradient(127deg, #000a09, #3e8786 70.71%),
     linear-gradient(336deg, #00ffc8, #042f2e 70.71%);
 
-  button {
+  &__url {
     display: flex;
+    text-decoration: none;
     align-items: center;
     gap: 10px;
     background: transparent;
     border: none;
     cursor: pointer;
-
+background-color: transparent;
     span {
       font-size: 16px;
       color: #ccfbf1;
+      font-weight: 600;
     }
   }
 
@@ -247,11 +267,69 @@ $primary-color: #042f2e;
     }
   }
 }
+@media only screen and (max-width: 900px) {
+  .welcome{
+    grid-column: 1 / 2;
+  padding: .5rem;
+  border-radius: 0.5rem;
+  height: 75%;
+  width: 70%;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    flex-direction: column;
+
+    span {
+      display: block;
+      font-size: 16px;
+      color: #ccfbf1;
+    }
+  }
+  &__text {
+    display: none;
+  }
+  &__name {
+    display: none;
+  }
+  &__email {
+    display: none;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+  }
+}
+.user__data-content{
+  margin: 1rem 0 1.2rem;
+
+  h3{
+    font-size: 1.6rem;
+    color: #ccfbf1;
+    margin-bottom: .6rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  & span{
+    display: block;
+    height: 30px;
+    font-size: 1.2rem;
+    padding: .6rem 1.2rem;
+    background-color: #f9fbfcf9;
+    border-radius: .4rem;
+    color: #000a09;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  & input{
+    padding: .6rem 1.2rem;
+  }
+}
 .profile {
   // transform: translateY(0rem);
   grid-column: 3/8;
-  grid-row: 2/-1;
-  height: calc(100vh - 15rem);
+  grid-row: 1/-1;
+  height: calc(100vh - 3rem);
   padding: 3rem 1rem 0;
 
   padding-bottom: 3rem;
@@ -288,6 +366,7 @@ $primary-color: #042f2e;
 
     .user_info {
       flex: 2;
+      
       .user_icon {
         transform: translateY(-6.5rem);
         // font-size: 7rem;
@@ -318,6 +397,17 @@ $primary-color: #042f2e;
     }
     .user_ideas {
       flex: 3;
+      & button{
+        float: right;
+        padding: .6rem 1.2rem;
+        color: #fff;
+        background-color: #000a09;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+      }
       h2 {
         font-size: 3.2rem;
         margin-bottom: 1rem;
@@ -376,7 +466,7 @@ $primary-color: #042f2e;
     grid-row: 2 / span 3;
     width: 90%;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: -4rem;
     // padding: 0 1.2rem;
     &-button {
       width: 100%;
@@ -406,18 +496,8 @@ $primary-color: #042f2e;
           font-weight: 300;
         }
 
-        @media only screen and (max-width: 900px) {
-          span {
-            display: none;
-          }
-          .btn-symbol {
-            font-size: 3rem;
-          }
-        }
-        &:hover .btn-symbol {
-          transform: scale(1.05);
-          color: #fff;
-        }
+       
+        
       }
       #top {
         position: relative;
@@ -513,7 +593,7 @@ $primary-color: #042f2e;
     }
     &-a {
       height: 100%;
-      padding: 0 1rem;
+      padding: 0 .4rem;
       h2 {
         color: #dfeef1;
         font-size: 1.9rem;
@@ -1112,5 +1192,183 @@ $primary-color: #042f2e;
         text-decoration: underline;
       }
     }
+  }
+}
+@media only screen and (max-width: 900px) {
+
+  .b__sidebar {
+    // background: yellow;
+    grid-column: 1 / 2;
+    grid-row: 2 / span 3;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: -5rem;
+    // padding: 0 1.2rem;
+    &-button {
+      width: 100%;
+      &--text {
+        display: none;
+        text-decoration: none;
+      }
+
+      button {
+        border: none;
+        width: max-content;
+        border-bottom: 2px solid #035677;
+        padding: 1rem .4rem;
+}}}
+  span {
+    display: none;
+  }
+  .btn-symbol {
+    font-size: 3rem;
+  }.btn-symbol {
+  transform: scale(1.05);
+  color: #fff;
+}
+#top {
+  position: relative;
+  &__num {
+    position: absolute;
+    top: 0;
+    left: 10px;}}
+
+    .profile {
+      padding: 0rem 1rem 0;
+
+      &-intro {
+        width: 100%;
+        height: 25%;
+        object-fit: cover;
+        background-image: url(./images/idea.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+    
+        & span {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-4rem);
+          right: 10%;
+          font-size: 4rem;
+          color: #ffffff;
+          letter-spacing: 1.2px;
+          font-weight: 600;
+          text-shadow: 0.1rem 0.2rem 0.4rem #01232e;
+        }
+      }
+    
+      &-bio {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    
+        .user_info {
+          flex: 2;
+          .user_icon {
+            transform: translateY(-6.5rem);
+            border-radius: 50%;
+            padding: 0.7rem;
+            width: 77%;
+            height: 77%;
+            border: 3px solid #00ffc8;
+          }
+          p {
+            font-size: 1.6rem;
+            color: #e9eef0;
+          }
+          h6 {
+            font-size: 1.4rem;
+            margin-top: 1.4rem;
+            font-weight: 100;
+          }
+          h4 {
+            margin-top: -2rem;
+            font-size: 1.4rem;
+          }
+        }
+        .user_ideas {
+          flex: 3;
+          h2 {
+            font-size: 2.4rem;
+          }
+          .idea {
+            line-height: 1.6;
+            p {
+              font-size: 1.4rem;
+              line-height: 1.2;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+      }
+    }
+}
+@media only screen and (max-width: 784px) {
+  .b__categories {
+    grid-column: 8 / -1;
+    grid-row: 1 / span 3;
+    padding: 1rem 0;
+
+    &-header {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      width: 60%;
+      margin: 0 auto 1rem;
+
+      &::after {
+        bottom: -2rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .b__category {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto 0;
+    flex-wrap: wrap;
+
+    &-btn {
+      margin: .2rem 0 1rem;
+      margin-left: 0;
+      padding: 0.6rem .6rem;
+      font-size: 1.2rem;
+
+      &:hover {
+        color: #bed3da;
+        background-color: #32565e;
+        // margin-left: .1rem;
+        transform: translateX(-0.1rem);
+      }
+    }
+  }
+  .app__footer {
+    width: 90%;
+    padding: 0.9rem 0.2rem;
+    p {
+      text-align: left;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin: 0 0 1rem;
+    }
+    a {
+      font-size: 1.2rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 650px) {
+  .b__categories {
+    display: none;
+  }
+  .b__ideas{
+    padding: 1rem 0 3rem;
   }
 }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Context } from "../context/userContext";
+import { domain } from "../utils/Utils";
 
 const UpdateIdea = ({ idea, setToggleUpdate, fetchIdeas }) => {
   const [text, setText] = useState("");
@@ -11,7 +12,7 @@ const UpdateIdea = ({ idea, setToggleUpdate, fetchIdeas }) => {
   }, []);
 
   const getidea = async (id) =>{
-    await axios.get(`http://localhost:5000/idea/${id}`,
+    await axios.get(`${domain}/idea/${id}`,
     {
       headers: { Authorization: `${user.token}` },
     })
@@ -20,7 +21,7 @@ const UpdateIdea = ({ idea, setToggleUpdate, fetchIdeas }) => {
     e.preventDefault()
     try {
       const res = await axios.put(
-        `http://localhost:5000/idea/${idea.idea_id}`,
+        `${domain}/idea/${idea.idea_id}`,
         { idea_text: text },
         {
           headers: { Authorization: `${user.token}` },

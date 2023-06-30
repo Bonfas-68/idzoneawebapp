@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { Context } from "../context/userContext";
 import update from "../images/create-outline.svg";
+import { domain } from "../utils/Utils";
 
 const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
   const {user} = useContext(Context)
@@ -18,7 +19,7 @@ const Reactions = ({ showComments, showUpdateForm, idea,fetchIdeas }) => {
   const deleteIdea = async (id) => {
     try {
       if (user.user_id === idea.user_id) {
-        const res = await axios.delete(`http://localhost:5000/idea/${id}`, {
+        const res = await axios.delete(`${domain}/idea/${id}`, {
           headers: { Authorization: `${user.token}` },
         });
         const data = await res?.data?.message;

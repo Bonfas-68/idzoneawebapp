@@ -7,9 +7,10 @@ import Comments from "./Comments";
 import UpdateIdea from "./UpdateIdea";
 import { Context } from "../context/userContext";
 import noimage from '../images/placeholder.jpeg';
+import { domain } from "../utils/Utils";
 
-const Idea = ({ idea, fetchIdeas }) => {
-  const { user } = useContext(Context);
+const Idea = ({ idea }) => {
+  const { user,fetchAllIdeas } = useContext(Context);
   const navigate = useNavigate()
   const [toggleComments, setToggleComments] = useState(false);
   const [readMore, setReadMore] = useState(false);
@@ -31,7 +32,7 @@ const Idea = ({ idea, fetchIdeas }) => {
   return (
     <div key={idea?.idea_id} className="b__idea">
       <Reactions
-        fetchIdeas={fetchIdeas}
+        fetchIdeas={fetchAllIdeas}
         user={user}
         idea={idea}
         showComments={showComments}
@@ -41,16 +42,16 @@ const Idea = ({ idea, fetchIdeas }) => {
         <UpdateIdea
           setToggleUpdate={setToggleUpdate}
           idea={idea}
-          fetchIdeas={fetchIdeas}
+          fetchIdeas={fetchAllIdeas}
         />
       ) : null}
       <div className="b__idea-image">
-        <img src={`http://localhost:5000/uploads/${idea?.idea_img}`} alt="photo" />
+        <img src={`${domain}/uploads/${idea?.idea_img}`} alt="photo" />
       </div>
       <div className="b__idea-user">
         <div className="b__user">
           <div style={{cursor:"pointer"}} className="b__user-img" onClick={()=> goToUserPage(idea)}>
-            <img  className="user__icon"  src={`http://localhost:5000/uploads/${idea?.user_image}`} />
+            <img  className="user__icon"  src={`${domain}/uploads/${idea?.user_image}`} />
           </div>
           <div className="b__user-details">
             <h3>{idea?.username}</h3>

@@ -16,12 +16,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({setToggleLogin}) => {
-  const [users, setUsers] = useState();
-  const fetchUserData =  async () =>
-  {
-   const res = axios.get("http://localhost:5000/profile/") 
-  }
-
+  
   return (
     <div className="b__sidebar">
       <div className="b__sidebar-button">

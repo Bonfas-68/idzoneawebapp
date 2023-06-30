@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
+import { domain } from '../utils/Utils'
 
 const ReadMore = ({ ideas}) => {
     
@@ -9,7 +10,7 @@ console.log(location)
   return (
     <div className='read__more'>
         <div className="read">
-        <img src={`http://localhost:5000/uploads/${state?.idea_img}`} alt="" />
+        <img src={`${domain}/uploads/${state?.idea_img}`} alt="" />
             <h1>{state?.idea_title}</h1>
             <p>{state?.idea_text}</p>
         </div>

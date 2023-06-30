@@ -8,10 +8,11 @@ import {
   FaVideo,
 } from "react-icons/fa";
 import { Context } from "../context/userContext";
+import { domain } from "../utils/Utils";
 // import { ContextIdeas } from "../context/ideasContext";
 
-const AddIdea = ({ fetchIdeas}) => {
-  const { user } = useContext(Context);
+const AddIdea = () => {
+  const { user,fetchAllIdeas } = useContext(Context);
   const [file,setFile] = useState(null);
   const validateFile = (file) => {
     const validTypes = ['image/jpeg','video/mp4', 'image/jpg', 'image/png'];
@@ -40,14 +41,14 @@ const AddIdea = ({ fetchIdeas}) => {
       formData.append('file', file);
     try {
       const res = await axios.post(
-        "http://localhost:5000/ideas",formData,
+        `${domain}/ideas`,formData,
         {
           headers: { Authorization: `${user.token}` },
         }
       );
       const message = await res.data.message;
       reset()
-      fetchIdeas()
+      fetchAllIdeas()
       // alert(message);
     } catch (error) {
       alert(error.message)

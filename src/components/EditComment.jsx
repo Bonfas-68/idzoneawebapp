@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/userContext";
 import axios from "axios";
+import { domain } from "../utils/Utils";
 
 const EditComment = ({ com, setShowEdit, getComments }) => {
   const { user } = useContext(Context);
@@ -13,7 +14,7 @@ const EditComment = ({ com, setShowEdit, getComments }) => {
     e.preventDefault()}
   const handleEdit = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/comment/${id}`,{comment}, {
+      const res = await axios.put(`${domain}/api/comment/${id}`,{comment}, {
         headers: { Authorization: `${user.token}` },
       });
       const message = await res.data.message;

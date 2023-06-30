@@ -12,11 +12,13 @@ import ReadMore from "./homePages/ReadMore"
 import UpdateIdea from "./components/UpdateIdea"
 import Welcome from "./components/Welcome"
 import { Context } from "./context/userContext"
+import Profile from "./components/Profile"
 
 
 
 function App() {
   const [toggleLogin, setToggleLogin] = useState(false)
+  const [toggleSHow, setToggleShow] = useState(false)
   const {user} = useContext(Context)
   const [tyme, setTyme] =useState(new Date().toLocaleTimeString())
   useEffect(()=>{
@@ -26,12 +28,13 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
-    {user && <Welcome />}
-    <div id="root_intro"><h1>A problem shared is problem halved!!! Share More @idzonea to help another </h1><span>{tyme.split(" ")[0] >= 12 ? `${tyme} PM` :`${tyme} AM` }</span></div>
+    {user && <Welcome setToggleShow={setToggleShow}/>}
+    <div id="root_intro"><h1>A problem shared is problem halved!!! Share More @idzonea to help another </h1><span>{tyme.split(":")[0] >= 12 ? `${tyme} PM` :`${tyme} AM` }</span></div>
       <Sidebar setToggleLogin={setToggleLogin}/>
       <Routes>
         <Route path="/login" element={<Home />} />
         <Route path="/" element={<Register />}/>
+        <Route path="/profile" element={<Profile />}/>
         <Route path="/app" element={<IdeaLayout/>}>
           <Route path="/app/readmore" element={<ReadMore />} />
           <Route path="/app/update" element={<UpdateIdea />} />

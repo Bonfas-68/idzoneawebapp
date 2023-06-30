@@ -16,25 +16,20 @@ import { Context } from "../context/userContext";
 // import { ContextIdeas } from "../context/ideasContext";
 
 const IdeaLayout = () => {
-  const { user } = useContext(Context);
-  const [ideas, setIdeas] = useState([]);
+  const { user, fetchAllIdeas, ideas } = useContext(Context);
+  // const [ideas, setIdeas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const fetchIdeas = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/ideas", {
-        headers: { Authorization: `${user.token}` },
-      });
-      const idea = await res.data
       setLoading(true);
-      setIdeas(idea);
+      fetchAllIdeas();
       setLoading(false);
     } catch (err) {
       setLoading(false);
       setError(err.message);
       alert(err.message);
-      navigate("/login");
     }
   };
   useEffect(() => {
@@ -45,22 +40,17 @@ const IdeaLayout = () => {
 
   return (
     <>
-      {user?.token && <AddIdea fetchIdeas={fetchIdeas}/>}
-      <Welcome
-        toggleProfile={toggleProfile}
-        setToggleProfile={setToggleProfile}
-      />
-      {toggleProfile ? (
-        <Profile ideas={ideas}/>
-      ) : ideas.length ? (
-        <Appideas ideas={ideas} fetchIdeas={fetchIdeas}/>
+      {user?.token && <AddIdea fetchIdeas={fetchIdeas} />}
+      <Welcome />
+      {ideas.length ? (
+        <Appideas ideas={ideas} fetchIdeas={fetchIdeas} />
       ) : (
         <>
           <NoIdeas />
           <Loader error={error} loading={loading} load={load} />
         </>
       )}
-      <Outlet  fetchIdeas={fetchIdeas}/>
+      <Outlet />
     </>
   );
 };

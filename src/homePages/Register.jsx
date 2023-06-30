@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+import { domain } from "../utils/Utils";
 
 const Register = ({ setToggleLogin }) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Register = ({ setToggleLogin }) => {
       // send to the server
       // saveImage(formData);
       try {
-        const res = await axios.post("http://localhost:5000/auth/register",formData);
+        const res = await axios.post(`${domain}/auth/register`,formData);
         const data = await res.data.message
         alert(data)
         console.log(res)

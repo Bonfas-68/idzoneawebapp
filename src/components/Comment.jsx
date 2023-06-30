@@ -3,6 +3,7 @@ import EditComment from "./EditComment";
 import { FaEdit, FaTrash, FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import { Context } from "../context/userContext";
+import { domain } from "../utils/Utils";
 
 const Comment = ({ com, getComments }) => {
   const { user } = useContext(Context);
@@ -10,7 +11,7 @@ const Comment = ({ com, getComments }) => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/comment/${id}`,
+        `${domain}/api/comment/${id}`,
         {
           headers: { Authorization: `${user.token}` },
         }
@@ -33,7 +34,7 @@ const Comment = ({ com, getComments }) => {
 
       <div className="comment">
         <div className="userinfo">
-        <img width={25} height={25} style={{borderRadius:"50%"}} className="user_icon"  src={`http://localhost:5000/uploads/${com?.user_image}`} />
+        <img width={25} height={25} style={{borderRadius:"50%"}} className="user_icon"  src={`${domain}/uploads/${com?.user_image}`} />
           <span>{com.username}@idZonea</span>
         </div>
         <p className="content">{com.comment}</p>

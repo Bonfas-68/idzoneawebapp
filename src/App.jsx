@@ -12,7 +12,6 @@ import ReadMore from "./homePages/ReadMore"
 import UpdateIdea from "./components/UpdateIdea"
 import Welcome from "./components/Welcome"
 import { Context } from "./context/userContext"
-import Profile from "./components/Profile"
 
 
 
@@ -34,7 +33,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Home />} />
         <Route path="/" element={<Register />}/>
-        <Route path="/profile" element={<Profile />}/>
         <Route path="/app" element={<IdeaLayout/>}>
           <Route path="/app/readmore" element={<ReadMore />} />
           <Route path="/app/update" element={<UpdateIdea />} />

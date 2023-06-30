@@ -6,7 +6,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import axios from "axios";
 import { FaUser } from "react-icons/fa";
 import Welcome from "../components/Welcome";
-import Profile from "../components/Profile";
 import load from "../images/loader.svg";
 import idea from "../images/idea.svg";
 

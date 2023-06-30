@@ -1,1 +1,1 @@
-export const domain = 'https://idzoneademo.azurewebsites.net';
+export const domain = 'https://idzoneademo.azurewebsites.net/'

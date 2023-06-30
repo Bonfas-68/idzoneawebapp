@@ -9,6 +9,9 @@ export const ContextProvider = ({ children }) => {
   const [ideas , setIdeas] = useState(
     JSON.parse(localStorage.getItem("ideas")) || null
   );
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
   const fetchAllIdeas = async () => {
       const res = await axios.get(`${domain}/ideas`, {
         headers: { Authorization: `${user.token}` },
@@ -17,14 +20,11 @@ export const ContextProvider = ({ children }) => {
       setIdeas(idea);
   };
   
-  useEffect(() => {
-    localStorage.setItem("ideas", JSON.stringify(ideas));
-  }, [ideas]);
-  
+
   useEffect(() => {
     fetchAllIdeas();
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+    localStorage.setItem("ideas", JSON.stringify(ideas));
+  }, [ideas]);
 
   const login = async (data) => {
     const res = await axios.post(`${domain}/auth/login`, data);
